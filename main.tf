@@ -124,6 +124,10 @@ resource "kubernetes_pod_security_policy" "psp" {
       rule = "MustRunAsNonRoot"
     }
 
+    se_linux {
+      rule = "RunAsAny"
+    }
+
 
     supplemental_groups {
       rule = "MustRunAs"
