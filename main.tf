@@ -54,7 +54,7 @@ resource "kubernetes_resource_quota" "quota" {
       "limits.cpu"             = var.cpu_limit
       "limits.memory"          = var.memory_limit
       "requests.cpu"           = var.cpu_request
-      "requests_.memory"       = var.memory_request
+      "requests.memory"       = var.memory_request
       "services.loadbalancers" = 0
     }
 
