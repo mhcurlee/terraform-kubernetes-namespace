@@ -175,6 +175,7 @@ resource "kubernetes_cluster_role_binding" "psp_clusterrolebinding" {
     kind      = "Group"
     name      = "system:serviceaccounts:${kubernetes_namespace.namespace.id}"
     api_group = "rbac.authorization.k8s.io"
+    namespace = kubernetes_namespace.namespace.id
   }
 
 
