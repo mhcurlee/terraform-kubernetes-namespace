@@ -46,7 +46,7 @@ resource "kubernetes_namespace" "namespace" {
 resource "kubernetes_resource_quota" "quota" {
   metadata {
     name      = "terraform-example"
-    namespace = var.namespace_name
+    namespace = kubernetes_namespace.namespace.id
   }
   spec {
     hard = {
@@ -67,7 +67,7 @@ resource "kubernetes_resource_quota" "quota" {
 resource "kubernetes_limit_range" "limitrange" {
   metadata {
     name      = "terraform-example"
-    namespace = var.namespace_name
+    namespace = kubernetes_namespace.namespace.id
   }
   spec {
     limit {
@@ -86,7 +86,7 @@ resource "kubernetes_limit_range" "limitrange" {
 resource "kubernetes_role_binding" "rolebinding" {
   metadata {
     name      = "default"
-    namespace = var.namespace_name
+    namespace = kubernetes_namespace.namespace.id
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
@@ -105,7 +105,7 @@ resource "kubernetes_role_binding" "rolebinding" {
 
 resource "kubernetes_pod_security_policy" "psp" {
   metadata {
-    name = "${var.namespace_name}-psp"
+    name = "${kubernetes_namespace.namespace.id}-psp"
   }
   spec {
     privileged                 = false
@@ -151,7 +151,7 @@ resource "kubernetes_pod_security_policy" "psp" {
 
 resource "kubernetes_cluster_role" "psp_clusterrole" {
   metadata {
-    name = "${var.namespace_name}-psp-clusterrole"
+    name = "${kubernetes_namespace.namespace.id}-psp-clusterrole"
   }
 
   rule {
@@ -164,7 +164,7 @@ resource "kubernetes_cluster_role" "psp_clusterrole" {
 
 resource "kubernetes_cluster_role_binding" "psp_clusterrolebinding" {
   metadata {
-    name = "${var.namespace_name}-psp-clusterrolebinding"
+    name = "${kubernetes_namespace.namespace.id}-psp-clusterrolebinding"
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
@@ -173,7 +173,7 @@ resource "kubernetes_cluster_role_binding" "psp_clusterrolebinding" {
   }
   subject {
     kind      = "Group"
-    name      = "system:serviceaccounts:${var.namespace_name}"
+    name      = "system:serviceaccounts:${kubernetes_namespace.namespace.id}"
     api_group = "rbac.authorization.k8s.io"
   }
 
