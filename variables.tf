@@ -29,7 +29,7 @@ variable "namespace_name" {
 
   validation {
     condition     = can(regex("^[0-9a-z\\-]*$", var.namespace_name))
-    error_message = "Namespace name: Only letters, numbers, and hypnens are allowed "
+    error_message = "Namespace name: Only letters, numbers, and hyphens are allowed "
   }
 }
 
