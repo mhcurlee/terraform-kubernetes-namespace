@@ -51,6 +51,7 @@ resource "kubernetes_resource_quota" "quota" {
   spec {
     hard = {
       "pods"                   = var.max_pods
+      "services"               = var.max_services
       "limits.cpu"             = var.cpu_limit
       "limits.memory"          = var.memory_limit
       "requests.cpu"           = var.cpu_request
