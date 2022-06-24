@@ -24,12 +24,12 @@ variable "namespace_name" {
 
   validation {
     condition     = var.namespace_name != "" && lower(var.namespace_name) == var.namespace_name
-    error_message = "Namesapce name: Must be lowercase!"
+    error_message = "Namesapce name: Must be lowercase?"
   }
 
   validation {
     condition     = can(regex("^[0-9a-z\\-]*$", var.namespace_name))
-    error_message = "Namespace name: Only letters, numbers, and hyphens are allowed "
+    error_message = "Namespace name: Only letters, numbers, and hyphens are allowed? "
   }
 }
 
