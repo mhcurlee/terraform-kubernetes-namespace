@@ -24,7 +24,7 @@ variable "namespace_name" {
 
   validation {
     condition     = var.namespace_name != "" && lower(var.namespace_name) == var.namespace_name
-    error_message = "Namesapce name must be lowercase."
+    error_message = "Namespace name must be lower case."
   }
 
   validation {
