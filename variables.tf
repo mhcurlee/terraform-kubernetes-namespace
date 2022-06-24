@@ -29,7 +29,7 @@ variable "namespace_name" {
 
   validation {
     condition = length(var.namespace_name) < 101
-    error_message = "Namespace name has a max size of 100 chars "
+    error_message = "Namespace name has a max size of 100 chars."
   }
 }
 
