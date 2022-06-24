@@ -23,13 +23,13 @@ variable "namespace_name" {
   type        = string
 
   validation {
-    condition     = var.namespace_name != "" && lower(var.namespace_name) == var.namespace_name
-    error_message = "Namespace name must be lower case."
+    condition     = can(regex("^[0-9a-z\\-]*$", var.namespace_name))
+    error_message = "Namespace name can only contain lower case letters, numbers, and hyphens."
   }
 
   validation {
-    condition     = can(regex("^[0-9a-z\\-]*$", var.namespace_name))
-    error_message = "Namespace name can only contain letters, numbers, and hyphens."
+    condition = length(var.namespace_name) < 101
+    error_message = "Namespace name has a max size of 100 chars "
   }
 }
 
