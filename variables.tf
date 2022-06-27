@@ -23,8 +23,8 @@ variable "namespace_name" {
   type        = string
 
   validation {
-    condition     = can(regex("^[a-z][a-z0-9\\-]*[a-z]$", var.namespace_name))
-    error_message = "Namespace name can only contain lower case letters, numbers, and hyphens.  The name must also start and end with a lower case letter."
+    condition     = can(regex("^[a-z0-9][a-z0-9\\-]*[a-z0-9]$", var.namespace_name))
+    error_message = "Namespace name can only contain lower case letters, numbers, and hyphens.  The name must also start and end with a lower case alphanumeric character."
   }
 
   validation {
