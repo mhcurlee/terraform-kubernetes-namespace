@@ -22,7 +22,7 @@ resource "kubernetes_role_binding" "harness_rb" {
   }
   subject {
     kind      = "ServiceAccount"
-    name      = kubernetes_service_account.harness.metadata.name
+    name      = kubernetes_service_account.harness.metadata[0].name
     namespace = kubernetes_namespace.namespace.id
   }
 }
